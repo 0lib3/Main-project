@@ -6,7 +6,6 @@ public class newSpriteBehavior : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float moveSpeed, jumpForce;
-    private bool moveleft, moveright;
 
     // Start is called before the first frame update
     void Start()
@@ -14,8 +13,6 @@ public class newSpriteBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = 5f;
         jumpForce = 500f;
-        moveleft = false;
-        moveright = false;
     }
 
     public void Jump()
@@ -24,13 +21,6 @@ public class newSpriteBehavior : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce);
         }
-    }
-
-    public void StopMoving()
-    {
-        moveleft = false;
-        moveright = false;
-        rb.velocity = Vector2.zero;
     }
 
     private bool IsGrounded()
