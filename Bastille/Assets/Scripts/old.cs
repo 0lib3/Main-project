@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mainSprite : MonoBehaviour
+public class old : MonoBehaviour
 {
     public float moveSpeed = 0.5f;
     public float jumpForce = 10.0f;
@@ -46,7 +46,6 @@ public class mainSprite : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false;
         }
     }
 
