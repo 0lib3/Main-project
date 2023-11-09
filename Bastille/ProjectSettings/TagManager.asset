@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - LevelDoor
+  - Wall
   layers:
   - Default
   - TransparentFX
