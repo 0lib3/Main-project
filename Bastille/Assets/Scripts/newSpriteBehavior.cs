@@ -6,6 +6,7 @@ public class newSpriteBehavior : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float moveSpeed, jumpForce;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,7 @@ public class newSpriteBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = 5f;
         jumpForce = 500f;
+        animator = GetComponent<Animator>();
     }
 
     public void Jump()
@@ -37,17 +39,20 @@ public class newSpriteBehavior : MonoBehaviour
         {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
             transform.rotation = Quaternion.Euler(0, 180, 0);
+            animator.SetBool("isRunning", true);
         }
         // Move right when 'D' or right arrow key is pressed-- rotate sprite 180 right
         else if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
             transform.rotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("isRunning", true);
         }
         // Movement stops when neither left nor right key is being pressed
         else
         {
             rb.velocity = new Vector2(0f, rb.velocity.y);
+            animator.SetBool("isRunning", false);
         }
 
         // Jump when the spacebar is pressed
