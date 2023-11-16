@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class newSpriteBehavior : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private float moveSpeed, jumpForce;
 
     // Start is called before the first frame update

@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float startingHealth;
     public float currentHealth {  get; private set; }
+    Rigidbody2D rb;
     
     private void Awake()
     {
@@ -14,8 +15,9 @@ public class Health : MonoBehaviour
         enemyAI.takeDmg.AddListener(TakeDamage);
     }
 
-    public void TakeDamage(float _damage)
+    public void TakeDamage(float _damage, Vector2 direction)
     {
+        rb.AddForce(direction * 10f, ForceMode2D.Impulse);
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
         if (currentHealth < 0) 
@@ -28,12 +30,8 @@ public class Health : MonoBehaviour
         }
     }
 
-    //Debug
-    private void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.E)) 
-        {
-            TakeDamage(1);
-        }
+        rb = GetComponent<Rigidbody2D>();
     }
 }

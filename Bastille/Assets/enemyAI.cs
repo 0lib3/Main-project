@@ -11,7 +11,9 @@ public class enemyAI : MonoBehaviour
     [SerializeField] float aRange;
     [SerializeField] float armedDistance;
     private bool isArmed = false;
-    public static UnityEvent<float> takeDmg = new UnityEvent<float>();
+    public static UnityEvent<float, Vector2> takeDmg = new UnityEvent<float, Vector2>();
+    private Animator animator;
+    Vector2 directionToPlayer;
 
     private void Awake()
     {
@@ -20,13 +22,14 @@ public class enemyAI : MonoBehaviour
     private void Start()
     {
         playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if(Vector2.Distance(transform.position, playerPosition.position) <= aRange)
         {
-            Vector2 directionToPlayer = (playerPosition.position - transform.position).normalized;
+            directionToPlayer = (playerPosition.position - transform.position).normalized;
             //Vector2.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
             transform.Translate(directionToPlayer * moveSpeed * Time.deltaTime);
         }
@@ -40,13 +43,20 @@ public class enemyAI : MonoBehaviour
     IEnumerator bombArm()
     {
         isArmed = true;
+        animator.SetTrigger("bom");
         yield return new WaitForSeconds(3);
         blowUp();
     }
 
     private void blowUp()
     {
-        takeDmg.Invoke(.3f);
+        takeDmg.Invoke(.3f, directionToPlayer);
+        Debug.Log(directionToPlayer);
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }
