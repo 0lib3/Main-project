@@ -1,55 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class enemyAI : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public Transform wallCheck;
-    public LayerMask wallLayer;
+    private Transform playerPosition;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float aRange;
+    [SerializeField] float armedDistance;
+    private bool isArmed = false;
+    public static UnityEvent<float> takeDmg = new UnityEvent<float>();
 
-    private Rigidbody2D rb;
-    private bool moveRight = true;
-    private const float wallCheckRadius = 0.2f;
-
-    void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Start()
     {
-        // Check for collision with the wall
-        bool isCollidingWithWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, wallLayer);
+        playerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
 
-        // Flip direction when colliding with the wall
-        if (isCollidingWithWall)
+    private void Update()
+    {
+        if(Vector2.Distance(transform.position, playerPosition.position) <= aRange)
         {
-            Flip();
+            Vector2 directionToPlayer = (playerPosition.position - transform.position).normalized;
+            //Vector2.MoveTowards(transform.position, playerPosition.position, moveSpeed * Time.deltaTime);
+            transform.Translate(directionToPlayer * moveSpeed * Time.deltaTime);
         }
 
-        // Move the enemy based on the current direction
-        if (moveRight)
+        if(isArmed == false && Vector2.Distance(transform.position, playerPosition.position) <= armedDistance) 
         {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            StartCoroutine(bombArm());
         }
     }
 
-    void Flip()
+    IEnumerator bombArm()
     {
-        moveRight = !moveRight;
-        Vector3 enemyScale = transform.localScale;
-        enemyScale.x *= -1;
-        transform.localScale = enemyScale;
+        isArmed = true;
+        yield return new WaitForSeconds(3);
+        blowUp();
     }
 
-    private void OnDrawGizmosSelected()
+    private void blowUp()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+        takeDmg.Invoke(.3f);
+        Destroy(gameObject);
     }
 }

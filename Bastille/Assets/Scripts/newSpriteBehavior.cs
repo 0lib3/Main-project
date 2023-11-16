@@ -12,14 +12,15 @@ public class newSpriteBehavior : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = 5f;
-        jumpForce = 500f;
+        jumpForce = 10f;
     }
 
     public void Jump()
     {
         if (rb.velocity.y == 0)
         {
-            rb.AddForce(Vector2.up * jumpForce);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
         }
     }
 

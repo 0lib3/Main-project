@@ -8,7 +8,7 @@ public class SpawnSprite : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(m_Sprite, transform.position, Quaternion.identity);
+        //Instantiate(m_Sprite, transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame
