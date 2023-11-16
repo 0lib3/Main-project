@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7725350197641604434}
   - component: {fileID: 7071265330752769686}
   - component: {fileID: 3194243869046592069}
+  - component: {fileID: 3943567679277197106}
   m_Layer: 0
   m_Name: fuckhead
   m_TagString: Player
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -641480631
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -8471995707833435328, guid: 10fb3a5284b7f2949ae57ef8c0b68433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -172,5 +173,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27db8e22cd0f39c49bdcfa4397ee642e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3943567679277197106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335728959850864954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d978966fde3fc894fb8e84c517f7ec45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
