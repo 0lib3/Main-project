@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dd5d597c776c10942a7cc851e5bee6c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 296.18
+      value: 276.53
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: dd5d597c776c10942a7cc851e5bee6c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -117,7 +117,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.00075276697, y: 0.15500002}
@@ -135,4 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2edb469fd163cf4ea9f008d5adc8784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winScreen: {fileID: 0}
+  delayBeforeReload: 3
